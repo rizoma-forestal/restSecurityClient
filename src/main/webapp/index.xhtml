@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form prependId="false" id="frmGral">
+            <!-- Formulario new y edit -->
+            <p:panel id="pnForm" >
+                <p:growl id="messages" showDetail="false" />
+                <h:panelGrid columns="2">
+                    <p:outputLabel value="id" for="id"/>
+                    <p:inputText id="id" value="#{mbClient.prod.id}" />
+                    <p:outputLabel value="Nombre científico" for="nomCient"/>
+                    <p:inputText id="nomCient" value="#{mbClient.nombreCientifico}" />
+                    <p:outputLabel value="Nombre vulgar" for="nomVulgar"/>
+                    <p:inputText id="nomVulgar" value="#{mbClient.nombreVulgar}" />
+                    <p:outputLabel value="Clase" for="clase"/>
+                    <p:inputText id="clase" value="#{mbClient.clase}" />
+                    <p:outputLabel value="Unidad" for="unidad"/>
+                    <p:inputText id="unidad" value="#{mbClient.unidad}" />
+                    <p:outputLabel value="Total" for="total"/>
+                    <p:inputText id="total" value="#{mbClient.total}" />
+                </h:panelGrid>
+                <h:panelGrid columns="2">
+                    <p:commandButton value="Enviar" action="#{mbClient.save()}" update="dtProductos"/>
+                </h:panelGrid>
+            </p:panel>
+            
+            <!-- Listado -->
+            <p:panel id="pnTable" >
+                <p:dataTable value="#{mbClient.productos}"
+                     var="prod"
+                     id="dtProductos" 
+                     rows="5"
+                     paginator="true"      
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
+                    <p:column headerText="Nombre científico" >
+                        <p:outputLabel value="#{prod.nombreCientifico}"/>
+                    </p:column>
+                    <p:column headerText="Nombre vulgar" >
+                        <p:outputLabel value="#{prod.nombreVulgar}"/>
+                    </p:column>
+                    <p:column headerText="Clase" >
+                        <p:outputLabel value="#{prod.clase}"/>
+                    </p:column>
+                    <p:column headerText="Unidad" >
+                        <p:outputLabel value="#{prod.unidad}"/>
+                    </p:column>
+                    <p:column headerText="Total" >
+                        <p:outputLabel value="#{prod.total}"/>
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
+
